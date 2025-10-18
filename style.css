@@ -1,0 +1,78 @@
+body{
+    background: white;
+    color: #333;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+    
+}
+
+.product{
+    width: 200px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    padding:20px ;
+    transition: transform 0.3 ease;
+    text-align: center;
+}
+.product:hover{
+    transform: scale(1.03);
+}
+.product img{
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+#products {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+button{
+    background-color: lightcoral;
+    color: white;
+    padding: 15px;
+    width: 200px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+button:hover{
+    background-color: red;
+}
+
+@media (max-width: 768px) {
+  .gallery-container {
+    flex-direction: column; /* چیدمان عمودی در موبایل */
+    align-items: center;     /* وسط‌چین کردن کارت‌ها */
+  }
+
+.product-card {
+    width: 70%; /* کارت‌ها تقریباً تمام عرض صفحه بشن */
+  }
+}
+
+footer{
+    margin-top: 50px;
+    color: #777;
+}
+
+nav a {
+    color: white;
+    margin:10px;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+header h1{
+    color:lightcoral;
+}
+
+nav{
+    background-color: lightcoral;
+    padding: 15px;
+    border-radius: 8px;
+ }
