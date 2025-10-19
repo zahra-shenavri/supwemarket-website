@@ -12,7 +12,7 @@ body{
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     padding:20px ;
-    transition: transform 0.3 ease;
+    transition: transform 0.3s ease;
     text-align: center;
 }
 .product:hover{
@@ -26,6 +26,7 @@ body{
 
 #products {
     display: flex;
+    flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
 }
@@ -42,17 +43,6 @@ button{
 }
 button:hover{
     background-color: red;
-}
-
-@media (max-width: 768px) {
-  .gallery-container {
-    flex-direction: column; /* چیدمان عمودی در موبایل */
-    align-items: center;     /* وسط‌چین کردن کارت‌ها */
-  }
-
-.product-card {
-    width: 70%; /* کارت‌ها تقریباً تمام عرض صفحه بشن */
-  }
 }
 
 footer{
@@ -76,3 +66,30 @@ nav{
     padding: 15px;
     border-radius: 8px;
  }
+
+@media (max-width: 768px) {
+  #products {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    }
+  nav a {
+    display: block;
+    margin: 10px 0;
+  }
+
+
+  .product {
+    width: 90%;
+    max-width: 300px;
+  }
+
+  button {
+    width: 100%;
+  }
+}
