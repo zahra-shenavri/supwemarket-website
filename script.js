@@ -18,3 +18,35 @@ for (var i = 0; i < buttons.length; i++){
     totalDisplay.innerText = "مجموع: " + total.toLocaleString() + " ریال";
   };
 }
+
+const inFrom = document.getElementById('inFrom');
+const name = document.getElementById('name');
+const email = document.getElementById('email');
+const number = document.getElementById('number');
+const address = document.getElementById('address');
+
+inFrom.addEventListener('submit',
+  function(event){
+    event.preventDefault();
+
+
+   const nameValue =name.value.trim();
+   const emailValue =email.value.trim();
+   const numberValue =number.value.trim();
+   const addressValue =address.value.trim();
+
+   if(nameValue !== "" && emailValue !== "" && numberValue !== "" && addressValue !== ""){
+    alert(
+      "✅ اطلاعات ثبت شد!\n\n" +
+      "نام: " + name + "\n" +
+      "ایمیل: " + email + "\n" +
+      "آدرس: " + address + "\n"+
+      "شماره تلفن:" + number 
+    );
+
+  
+    inFrom.reset();
+  } else {
+    alert("⚠ لطفاً همه فیلدها را پر کنید.");
+  }
+  });
