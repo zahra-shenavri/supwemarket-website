@@ -1,71 +1,71 @@
-// 🛒 متغیرهای اصلی
-var total = 0;
-var cartList = document.getElementById("cart-items");
-var totalDisplay = document.getElementById("total-price");
-var buttons = document.getElementsByClassName("add-to-cart");
-var cartCount = document.getElementById("cart-count");
-var itemCount = 0;
+window.addEventListener('DOMContentLoaded', () => {
 
-var cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+  // 🛒 متغیرهای اصلی
+  let total = 0;
+  const cartList = document.getElementById("cart-items");
+  const totalDisplay = document.getElementById("total-price");
+  const buttons = document.getElementsByClassName("add-to-cart");
+  const cartCount = document.getElementById("cart-count");
+  let itemCount = 0;
 
-// حذف محصول از سبد خرید
-function removeCartItem(index, liElement) {
-  liElement.style.transition = "all 0.3s ease";
-  liElement.style.opacity = "0";
-  liElement.style.transform = "translateX(-50px)";
+  let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
 
-  setTimeout(() => {
-    cartList.removeChild(liElement);
-  }, 300);
+  // 🔹 حذف محصول از سبد خرید
+  function removeCartItem(index, liElement) {
+    liElement.style.transition = "all 0.3s ease";
+    liElement.style.opacity = "0";
+    liElement.style.transform = "translateX(-50px)";
 
-  total -= cartItems[index].price;
-  itemCount--;
-  totalDisplay.innerText = "مجموع:" + total.toLocaleString() + " ریال";
-  cartCount.innerText = "(" + itemCount + ")";
+    setTimeout(() => {
+      cartList.removeChild(liElement);
+    }, 300);
 
-  cartItems.splice(index, 1);
-  localStorage.setItem("cartItems", JSON.stringify(cartItems));
-}
+    total -= cartItems[index].price;
+    itemCount--;
+    totalDisplay.innerText = "مجموع: " + total.toLocaleString() + " ریال";
+    cartCount.innerText = "(" + itemCount + ")";
 
-// ساخت آیتم سبد خرید
-function createCartItemElement(item, index) {
-  const li = document.createElement("li");
-  li.textContent = item.name + " - " + item.price.toLocaleString() + " ریال ";
+    cartItems.splice(index, 1);
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }
 
-  const removeBtn = document.createElement("button");
-  removeBtn.textContent = "❌";
-  removeBtn.className = "remove-item";
-  li.appendChild(removeBtn);
+  // 🔹 ساخت آیتم سبد خرید
+  function createCartItemElement(item, index) {
+    const li = document.createElement("li");
+    li.textContent = item.name + " - " + item.price.toLocaleString() + " ریال ";
 
-  removeBtn.addEventListener('click', function() {
-    removeCartItem(index, li);
-  });
+    const removeBtn = document.createElement("button");
+    removeBtn.textContent = "❌";
+    removeBtn.className = "remove-item";
+    li.appendChild(removeBtn);
 
-  return li;
-}
+    removeBtn.addEventListener('click', function() {
+      removeCartItem(index, li);
+    });
 
-// بارگذاری اطلاعات ذخیره‌شده
-function loadCart() {
-  cartList.innerHTML = "";
-  total = 0;
-  itemCount = 0;
+    return li;
+  }
 
-  cartItems.forEach((item, idx) => {
-    const li = createCartItemElement(item, idx);
-    cartList.appendChild(li);
-    total += item.price;
-    itemCount++;
-  });
+  // 🔹 بارگذاری سبد خرید
+  function loadCart() {
+    cartList.innerHTML = "";
+    total = 0;
+    itemCount = 0;
 
-  totalDisplay.innerText = "مجموع:" + total.toLocaleString() + " ریال";
-  cartCount.innerText = "(" + itemCount + ")";
-}
+    cartItems.forEach((item, idx) => {
+      const li = createCartItemElement(item, idx);
+      cartList.appendChild(li);
+      total += item.price;
+      itemCount++;
+    });
 
-window.addEventListener('load', function() {
-  // بارگذاری سبد خرید
+    totalDisplay.innerText = "مجموع: " + total.toLocaleString() + " ریال";
+    cartCount.innerText = "(" + itemCount + ")";
+  }
+
+  // 🔹 بارگذاری اطلاعات ذخیره‌شده
   loadCart();
 
-  // بارگذاری اطلاعات کاربر
   const nameInput = document.getElementById('name');
   const emailInput = document.getElementById('email');
   const numberInput = document.getElementById('number');
@@ -80,76 +80,76 @@ window.addEventListener('load', function() {
   if(savedEmail) emailInput.value = savedEmail;
   if(savedNumber) numberInput.value = savedNumber;
   if(savedAddress) addressInput.value = savedAddress;
-});
 
-// افزودن محصول به سبد خرید
-for (let i = 0; i < buttons.length; i++) {
-  buttons[i].addEventListener('click', function() {
-    const product = this.parentElement;
-    const nameElement = product.querySelector("h3, h2");
-    const name = nameElement ? nameElement.innerText : "محصول بدون نام";
+  // 🔹 افزودن محصول به سبد خرید
+  for (let i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener('click', function() {
+      const product = this.parentElement;
+      const nameElement = product.querySelector("h3, h2");
+      const name = nameElement ? nameElement.innerText : "محصول بدون نام";
 
-    const priceElement = product.querySelector(".price");
-    const price = priceElement ? parseInt(priceElement.innerText.replace(/\D/g, "")) : 0;
+      const priceElement = product.querySelector(".price");
+      const price = priceElement ? parseInt(priceElement.innerText.replace(/\D/g, "")) : 0;
 
-    const newItemObj = { name: name, price: price };
-    cartItems.push(newItemObj);
+      const newItemObj = { name, price };
+      cartItems.push(newItemObj);
 
-    loadCart(); // بازسازی سبد خرید
-    localStorage.setItem("cartItems", JSON.stringify(cartItems));
-    localStorage.setItem("cartTotal", total);
+      localStorage.setItem("cartItems", JSON.stringify(cartItems));
+      loadCart();
+    });
+  }
+
+  // 🔹 فرم اطلاعات کاربر
+  const infoForm = document.getElementById('infoForm');
+  infoForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const nameValue = nameInput.value.trim();
+    const emailValue = emailInput.value.trim();
+    const numberValue = numberInput.value.trim();
+    const addressValue = addressInput.value.trim();
+
+    if(nameValue && emailValue && numberValue && addressValue) {
+      localStorage.setItem("userName", nameValue);
+      localStorage.setItem("userEmail", emailValue);
+      localStorage.setItem("userNumber", numberValue);
+      localStorage.setItem("userAddress", addressValue);
+      alert("✅ اطلاعات ثبت شد!");
+      infoForm.reset();
+    } else {
+      alert("⚠ لطفاً همه فیلدها را پر کنید.");
+    }
   });
-}
 
-// فرم اطلاعات کاربر
-const infoForm = document.getElementById('infoForm');
-infoForm.addEventListener('submit', function(e) {
-  e.preventDefault();
-  const nameValue = document.getElementById('name').value.trim();
-  const emailValue = document.getElementById('email').value.trim();
-  const numberValue = document.getElementById('number').value.trim();
-  const addressValue = document.getElementById('address').value.trim();
+  // 🔹 حذف اطلاعات کاربر
+  const clearButton = document.getElementById('clear-data');
+  clearButton.addEventListener('click', function() {
+    if(confirm("آیا مطمئن هستید؟")){
+      localStorage.removeItem("userName");
+      localStorage.removeItem("userEmail");
+      localStorage.removeItem("userNumber");
+      localStorage.removeItem("userAddress");
+      nameInput.value = "";
+      emailInput.value = "";
+      numberInput.value = "";
+      addressInput.value = "";
+      alert("✅ اطلاعات حذف شد");
+    }
+  });
 
-  if(nameValue && emailValue && numberValue && addressValue) {
-    localStorage.setItem("userName", nameValue);
-    localStorage.setItem("userEmail", emailValue);
-    localStorage.setItem("userNumber", numberValue);
-    localStorage.setItem("userAddress", addressValue);
-    alert("✅ اطلاعات ثبت شد!");
-    infoForm.reset();
-  } else {
-    alert("⚠ لطفاً همه فیلدها را پر کنید.");
-  }
-});
+  // 🔹 ثبت نهایی سفارش
+  const confirmOrder = document.getElementById('confirm-order');
+  confirmOrder.addEventListener('click', function(e) {
+    e.preventDefault();
+    if(cartItems.length === 0) { alert("❌ سبد خرید شما خالی است!"); return; }
 
-// حذف اطلاعات کاربر
-const clearButton = document.getElementById('clear-data');
-clearButton.addEventListener('click', function() {
-  if(confirm("آیا مطمئن هستید؟")){
-    localStorage.removeItem("userName");
-    localStorage.removeItem("userEmail");
-    localStorage.removeItem("userNumber");
-    localStorage.removeItem("userAddress");
-    document.getElementById('name').value = "";
-    document.getElementById('email').value = "";
-    document.getElementById('number').value = "";
-    document.getElementById('address').value = "";
-    alert("✅ اطلاعات حذف شد");
-  }
-});
+    const nameValue = localStorage.getItem("userName") || "";
+    const addressValue = localStorage.getItem("userAddress") || "";
+    if(!nameValue || !addressValue) { alert("⚠ لطفاً اطلاعات کاربر را وارد کنید!"); return; }
 
-// ثبت نهایی سفارش
-const confirmOrder = document.getElementById('confirm-order');
-confirmOrder.addEventListener('click', function(e) {
-  e.preventDefault();
-  if(cartItems.length === 0) { alert("❌ سبد خرید شما خالی است!"); return; }
+    alert("✅ سفارش ثبت شد!\nمشتری: " + nameValue + "\nآدرس: " + addressValue + "\nمجموع: " + total.toLocaleString() + " ریال");
+    localStorage.clear();
+    cartItems = [];
+    loadCart();
+  });
 
-  const nameValue = localStorage.getItem("userName") || "";
-  const addressValue = localStorage.getItem("userAddress") || "";
-  if(!nameValue || !addressValue) { alert("⚠ لطفاً اطلاعات کاربر را وارد کنید!"); return; }
-
-  alert("✅ سفارش ثبت شد!\nمشتری: " + nameValue + "\nآدرس: " + addressValue + "\nمجموع: " + total.toLocaleString() + " ریال");
-  localStorage.clear();
-  cartItems = [];
-  loadCart();
 });
