@@ -43,9 +43,44 @@
                 <p class="price">قیمت:300,000 ریال</p>
                 <button class="add-to-cart">افزودن به سبد خرید</button>
             </div>
+
+            <div class="product">
+                <img src="kokakola.jpg" alt="نوشابه">
+                <h3>نوشابه</h3>
+                <p class="price">قیمت:550,000ریال</p>
+                <button class="add-to-cart">افزودن به سبد خرید</button>
+            </div>
+
+            <div class="product">
+                <img src="galorya.jpg" alt="انرژی زا گلوریا">
+                <h3>انرژی زا گلوریا</h3>
+                <p class="price">قیمت:1,000,000ریال</p>
+                <button class="add-to-cart">افزودن به سبد خرید</button>
+            </div>
+
+            <div class="product">
+                <img src="alochah.jpg" alt="آلوچه مادربزرگ">
+                <h3>آلوچه مادربزرگ</h3>
+                <p class="price">قیمت:350,000ریال</p>
+                <button class="add-to-cart">افزودن به سبد خرید</button>
+            </div>
+            
+            <div class="product">
+                <img src="kykpachh.jpg" alt="شیبابا">
+                <h3>کیک شیبابا</h3>
+                <p class="price">قیمت:220,000ریال</p>
+                <button class="add-to-cart">افزودن به سبد خرید</button>
+            </div>
+
+            <div class="product">
+                <img src="konasrv.jpg" alt="کنسرو لوبیا">
+                <h3>کنسرو لوبیا</h3>
+                <p class="price">قیمت:700,000ریال</p>
+                <button class="add-to-cart">افزودن به سبد خرید</button>
+            </div>
         </section>
         <section id="cart">
-            <h2>سبد خرید</h2>
+            <h2>سبد خرید<span id="cart-count">(0)</span></h2>
             <ul id="cart-items"></ul>
             <p id="total-price">مجموع:0تومان</p>
         </section>
@@ -53,7 +88,7 @@
 
     <section id="user-info">
         <h3>اطلاعات کاربر</h3>
-        <form id="inFrom" dir="rtl">
+        <form id="infoForm" dir="rtl">
             <label for="name">نام و نام خانوادگی:</label>
             <input type="text" id="name" placeholder="مثلا مینا احمدی" required><br><br>
 
@@ -67,15 +102,30 @@
             <textarea id="address" placeholder="آدرس خود را وارد کنید..." required></textarea><br><br>
 
             <button type="submit">ثبت اطلاعات</button><br>
+            <button type="button" id="clear-data">حذف اطلاعات ذخیره شده</button>
+            <button id="confirm-order">ثبت نهایی سفارش</button>
         </form>
     </section>
 
     <footer>
         <p>سوپرمارکت باباحیدر2025</p>
+        <div class="social-links">
+        <a href="https://instagram.com/zara_sh84" target="_blank">اینستاگرام</a>
+        <a href="https://t.me/ZrA_star" target="_blank">تلگرام</a>
+        <a href="https://wa.me/989170806612" target="_blank">واتساپ</a>
+        </div>
     </footer>
     
     
-    <script src="script.js"></script>
+    <script src="scri.js"></script>
+    <script>window.addEventListener("load",
+    (function(){var t="68ff3e4959f646b7b34baa41";
+    window.chatina={bId:t};var e=document.createElement("div");e.id="chatina-root",
+    document.body.appendChild(e);var n=document.createElement("link");n.rel="stylesheet",
+    n.href="https://cdn.chatina.ai/static/widget.css",n.crossOrigin="anonymous",
+    document.head.appendChild(n);var a=document.createElement("script");a.src="https://cdn.chatina.ai/static/widget.js",
+    a.crossOrigin="anonymous",
+    document.head.appendChild(a)}));</script>
 
 </body>
 </html>
